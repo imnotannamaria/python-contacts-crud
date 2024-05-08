@@ -42,8 +42,11 @@ while True:
         email = input("And the contact email?!  ")
         phone = input("Phone number?!  ")
         favorite = input("Is the contact a favorite? (y/n) ")
+
         if favorite == "y":
           favorite = True
+        else:
+          favorite = False
 
         contact_list.append(Contact(contact_id, name, email, phone, favorite))
         print("Contact added!\n")
@@ -89,16 +92,63 @@ while True:
 
       should_end_program()
     elif menu_choice == "4":
-      print("TBI\n")
+      contact_id_to_edit = input("Choose the ID of the contact you want to edit: ")
+
+      contact_to_edit = 0
+
+      for contact in contact_list:
+        if contact.id == int(contact_id_to_edit):
+          contact_to_edit = contact
+          break
+      
+      if contact_to_edit:
+        contact_to_edit.favorite = True
+        
+        print("Contact Marked as favorite!")
+      else:
+        print("Contact with ID", contact_id_to_edit, "not found.")
+
+      should_end_program()
     elif menu_choice == "5":
-      print("TBI\n")
+      contact_id_to_edit = input("Choose the ID of the contact you want to edit: ")
+
+      contact_to_edit = 0
+
+      for contact in contact_list:
+        if contact.id == int(contact_id_to_edit):
+          contact_to_edit = contact
+          break
+      
+      if contact_to_edit:
+        contact_to_edit.favorite = False
+        
+        print("Contact Unmarked as favorite!")
     elif menu_choice == "6":
-      print("TBI\n")
+      if contact_list:
+        print("Favorite Contacts:")
+        for contact in contact_list:
+          if contact.favorite:
+            print("Id:", contact.id, "| Name:", contact.name, "| E-mail:", contact.email, "| Phone:", contact.phone, "| Is Favorite:", contact.favorite, "\n")
+      else:
+        print("Contact list is empty.\n")
+      should_end_program()
     elif menu_choice == "7":
-      print("TBI\n")
+      contact_id_to_edit = input("Choose the ID of the contact you want to delete: ")
+
+      contact_to_edit = 0
+
+      for contact in contact_list:
+        if contact.id == int(contact_id_to_edit):
+          contact_to_edit = contact
+          break
+      
+      if contact_to_edit:
+        contact_list.remove(contact_to_edit)
+        print("Contact Deleted!")
     elif menu_choice == "8":
-      print("Exiting program.")
+      end_program()
     else:
       print("Invalid option. Please choose a valid option.\n")
+      should_end_program()
 
 
