@@ -58,7 +58,36 @@ while True:
 
         should_end_program()
     elif menu_choice == "3":
-      print("TBI\n")
+      contact_id_to_edit = input("Choose the ID of the contact you want to edit: ")
+
+      contact_to_edit = 0
+
+      for contact in contact_list:
+        if contact.id == int(contact_id_to_edit):
+          contact_to_edit = contact
+          break
+      
+      if contact_to_edit:
+        name = input("Tell me, what's the new contact name? ")
+        email = input("And the new contact email? ")
+        phone = input("New phone number? ")
+        favorite = input("Is the contact a favorite? (y/n) ")
+
+        if favorite == "y":
+          favorite = True
+        else:
+          favorite = False
+        
+        contact_to_edit.name = name
+        contact_to_edit.email = email
+        contact_to_edit.phone = phone
+        contact_to_edit.favorite = favorite
+        
+        print("Contact updated!")
+      else:
+        print("Contact with ID", contact_id_to_edit, "not found.")
+
+      should_end_program()
     elif menu_choice == "4":
       print("TBI\n")
     elif menu_choice == "5":
